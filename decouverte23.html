@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Découverte | Axel Nodier</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+
+        :root {
+            --deep-blue: #0a192f;
+            --neon-blue: #00d1ff;
+            --dark-bg: #020c1b;
+            --text-light: #e6f1ff;
+            --accent-black: #0b0b15;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+
+
+
+        /* Animation cosmos */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon-blue); }
+            25% { text-shadow: -2px 0 #ff00ff; }
+            50% { text-shadow: 2px 0 #00ffcc; }
+            75% { text-shadow: -2px 0 #ff9900; }
+            100% { text-shadow: 2px 0 var(--neon-blue); }
+        }
+    /* Styles globaux */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a192f;
+    color: #ccd6f6;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(10, 25, 47, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+}
+
+        .logo {
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+/* Carrousel 360° */
+.carousel-360 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    perspective: 2000px;
+    background: linear-gradient(to bottom, #021e40, #0a192f);
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 30s infinite linear;
+}
+
+@keyframes rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+.carousel-item {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(600px);
+    transition: transform 0.5s ease;
+    border: 2px solid #64ffda;
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sections */
+section {
+    padding: 4rem 10%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.gallery {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            #hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+
+            .hero-image {
+                position: relative;
+                right: auto;
+                width: 80%;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .stats-title, .creations-title {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width:768px) {
+            
+        }
+
+</style>
+<body>
+
+    <header id="one">
+        <div class="logo">AXEL_NODIER</div>
+        <nav class="nav-links">
+            <a href="#stats">Mes Stats</a>
+            <a href="#creations">Créations</a>
+            <a href="#contact">Contact</a>
+            <a href="./decouverte.html">Explorer +</a>
+        </nav>
+    </header>
+
+
+    <section id="tel">
+        <header>
+            <div class="logo">AXEL_NODIER</div>
+                <div class="menu-btn" id="menuBtn">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </header>
+    
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="./index.html">Accueil</a>
+            <a href="./decouverte23.html">Explorer +</a>
+            <a href="#stats">Mes Stats</a>
+            <a href="./decouverte23.html">Créations</a>
+            <a href="./pages/devis.html">Contact</a>
+        </nav>
+    </section>
+
+
+    <!-- Carrousel 360° -->
+    <section class="carousel-360">
+        <div class="carousel-container" id="carousel"></div>
+        <div class="carousel-overlay">
+            <h1>Explorez Mon Univers</h1>
+            <p>Tournez autour de mes créations</p>
+        </div>
+    </section>
+
+    <!-- Sections des créations -->
+    <section id="affiches">
+        <h2>Affiches</h2>
+        <div class="gallery">
+            <img src="./projets/enpriere.png" alt="Affiche 1">
+            <img src="./projets/COCKTAILS OASIS.png" alt="Affiche 2">
+            <img src="./projets/LUTUMBS.png" alt="Affiche 3">
+        </div>
+    </section>
+
+    <section id="logos">
+        <h2>Logos</h2>
+        <div class="gallery">
+            <img src="./projets/log_odi_fond_blanc.png" alt="Logo 1">
+            <img src="./projets/Dakis_food_logo_white.png" alt="Logo 2">
+            <img src="./projets/MALHIYA HOLDINGS.png" alt="Logo 3">
+        </div>
+    </section>
+
+    <section id="uxui">
+        <h2>UX/UI</h2>
+        <div class="gallery">
+            <img src="./projets/ezalaMockupfinal.png" alt="UX/UI 1">
+            <img src="ux2.jpg" alt="UX/UI 2">
+            <img src="ux3.jpg" alt="UX/UI 3">
+        </div>
+    </section>
+    <script src="./app/header.js"></script>
+    <script src="./app/index.js"></script>
+    <script>
+        // Menu Hamburger
+function toggleMenu() {
+    document.getElementById('menu').classList.toggle('active');
+}
+
+// Carrousel 360°
+const carousel = document.getElementById('carousel');
+const images = [
+    '../projets/femmes.png', '../projets/tout.png','../projets/RENEW_2.png',
+    '../projets/projetdodo18.png', '../projets/Louisette.png', 'logo3.jpg',
+    'ux1.jpg', 'ux2.jpg', 'ux3.jpg'
+];
+
+            images.forEach((img, index) => {
+                const angle = (index * 360) / images.length;
+                const item = document.createElement('div');
+                item.className = 'carousel-item';
+                item.style.setProperty('--angle', `${angle}deg`);
+                item.innerHTML = `<img src="${img}" alt="Création ${index + 1}">`;
+                carousel.appendChild(item);
+            });
+
+            document.addEventListener('click', function initAudio() {
+                const audio = document.getElementById('ambianceSound');
+                audio.volume = 0.3;
+                audio.play();
+                document.removeEventListener('click', initAudio);
+            });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soutenir mon travail | Axel Nodier - Créations Graphiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #0a192f;
+            --neon-blue: #00d1ff;
+            --dark-bg: #020c1b;
+            --text-light: #e6f1ff;
+            --accent-black: #0b0b15;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+
+        @font-face {
+            font-family: 'Cyber';
+            src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .logo {
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(2, 12, 27, 0.9));
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./projets/femmes.png') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Donation Section */
+        .donation-section {
+            padding: 5rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .donation-container {
+            background: rgba(10, 25, 47, 0.5);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            font-family: 'Cyber', sans-serif;
+        }
+
+        .section-description {
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .donation-option {
+            background: rgba(0, 209, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .donation-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 209, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            color: var(--neon-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .option-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .option-description {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .donation-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .paypal-btn {
+            background: #003087;
+            color: white;
+        }
+
+        .paypal-btn:hover {
+            background: #002673;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 48, 135, 0.3);
+        }
+
+        .mpesa-btn {
+            background: #00A650;
+            color: white;
+        }
+
+        .mpesa-btn:hover {
+            background: #008F46;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 166, 80, 0.3);
+        }
+
+        .donation-amounts {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .amount-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 209, 255, 0.1);
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            border-radius: 5px;
+            color: var(--neon-blue);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .amount-btn:hover, .amount-btn.active {
+            background: rgba(0, 209, 255, 0.2);
+            border-color: var(--neon-blue);
+            transform: translateY(-3px);
+        }
+
+        .custom-amount {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .custom-amount input {
+            max-width: 200px;
+            padding: 0.8rem;
+            background: rgba(0, 209, 255, 0.1);
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            border-radius: 5px;
+            color: var(--text-light);
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 10%;
+            background: var(--accent-black);
+            position: relative;
+            border-top: 1px solid rgba(0, 209, 255, 0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            color: var(--neon-blue);
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(230, 241, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .donation-container {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .donation-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width:768px) {
+            #tel{
+                display: block;
+                opacity: 1;
+            }
+
+            #tel header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+
+        }
+
+        #header-logo a {
+            font-family: 'Alta', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        #header-logo a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--deep-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        #header-logo a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+            .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: var(--transitionB);
+        }
+
+        .menu-btn.active .menu-line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-btn.active .menu-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .menu-line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Menu mobile */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: -50px;
+            align-items: center;
+            gap: 2rem;
+            clip-path: circle(0% at 90% 5%);
+            transition: clip-path 1s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            clip-path: circle(150% at 90% 5%);
+        }
+
+        .mobile-menu a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 1.4rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu a:hover{
+            border-bottom: var(--neon-blue);
+            padding-bottom: 10px;
+        }
+
+
+        #one{
+                display: none;
+        }
+
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="one">
+        <div class="logo">AXEL_NODIER</div>
+        <nav class="nav-links">
+            <a href="../index.html">Accueil</a>
+            <a href="./affiche.html">Affiches</a>
+            <a href="./logo.html">Logos</a>
+            <a href="./ux.html">UX/UI</a>
+        </nav>
+    </header>
+
+    
+    <section id="tel">
+        <header>
+            <div class="logo">AXEL_NODIER</div>
+                <div class="menu-btn" id="menuBtn">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </header>
+    
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="./index.html">Accueil</a>
+            <a href="#stats">Mes Stats</a>
+            <a href="#creations">Créations</a>
+            <a href="#contact">Contact</a>
+            <a href="./decouverte.html">Explorer +</a>
+        </nav>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">SOUTENEZ MON TRAVAIL</h1>
+            <p class="hero-subtitle">Votre soutien m'aide à continuer à créer des designs uniques et innovants</p>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section class="donation-section">
+        <div class="donation-container">
+            <h2 class="section-title">Faire un Don</h2>
+            <p class="section-description">
+                Si vous appréciez mon travail et souhaitez me soutenir, vous pouvez faire un don via PayPal ou M-Pesa.
+                Chaque contribution, petite ou grande, m'aide à continuer à créer et à développer de nouveaux projets.
+            </p>
+            
+            <div class="donation-amounts">
+                <button class="amount-btn" data-amount="5">5$</button>
+                <button class="amount-btn" data-amount="10">10$</button>
+                <button class="amount-btn" data-amount="20">20$</button>
+                <button class="amount-btn" data-amount="50">50$</button>
+                <button class="amount-btn" data-amount="100">100$</button>
+            </div>
+            
+            <div class="custom-amount">
+                <input type="number" id="customAmount" placeholder="Montant personnalisé (€)" min="1">
+            </div>
+            
+            <div class="donation-options">
+                <div class="donation-option">
+                    <div class="option-icon">
+                        <i class="fab fa-paypal"></i>
+                    </div>
+                    <h3 class="option-title">PayPal</h3>
+                    <p class="option-description">
+                        Paiement sécurisé par carte bancaire ou compte PayPal
+                    </p>
+                    <form action="https://www.paypal.com/donate" method="post" target="_blank" id="paypalForm">
+                        <input type="hidden" name="business" value="kinpurchase243@gmail.com">
+                        <input type="hidden" name="currency_code" value="USD">
+                        <input type="hidden" name="amount" id="paypalAmount" value="10">
+                        <button type="submit" class="donation-btn paypal-btn">
+                            <i class="fab fa-paypal"></i> Donner avec PayPal
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="donation-option">
+                    <div class="option-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="option-title">M-Pesa</h3>
+                    <p class="option-description">
+                        Paiement mobile via M-Pesa
+                    </p>
+                    <button id="mpesaBtn" class="donation-btn mpesa-btn">
+                        <i class="fas fa-mobile-alt"></i> Donner via M-Pesa
+                    </button>
+                    <div id="mpesaDetails" style="display: none; margin-top: 1rem;">
+                        <p>Envoyez votre don au numéro:</p>
+                        <p style="font-weight: bold; color: var(--neon-blue); font-size: 1.2rem;">+243 817 220 926</p>
+                        <p>Nom: Axel Nodier</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="./index.html">Accueil</a>
+            <a href="#affiches">Affiches</a>
+            <a href="#logos">Logos</a>
+            <a href="#uxui">UX/UI</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Axel Nodier. Tous droits réservés.
+        </div>
+    </footer>
+    
+    <script src="../app/index.js"></script>
+    <script src="../app/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sélection du montant
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customAmount = document.getElementById('customAmount');
+            const paypalAmount = document.getElementById('paypalAmount');
+            
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    amountBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    
+                    // Mettre à jour le montant PayPal
+                    const amount = this.getAttribute('data-amount');
+                    paypalAmount.value = amount;
+                    
+                    // Effacer le montant personnalisé
+                    customAmount.value = '';
+                });
+            });
+            
+            // Montant personnalisé
+            customAmount.addEventListener('input', function() {
+                // Retirer la classe active de tous les boutons
+                amountBtns.forEach(b => b.classList.remove('active'));
+                
+                // Mettre à jour le montant PayPal si valide
+                if (this.value && !isNaN(this.value) && parseFloat(this.value) > 0) {
+                    paypalAmount.value = parseFloat(this.value).toFixed(2);
+                }
+            });
+            
+            // Affichage des détails M-Pesa
+            const mpesaBtn = document.getElementById('mpesaBtn');
+            const mpesaDetails = document.getElementById('mpesaDetails');
+            
+            mpesaBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                mpesaDetails.style.display = mpesaDetails.style.display === 'none' ? 'block' : 'none';
+                
+                // Copier le numéro dans le presse-papiers
+                const mpesaNumber = "+243817220926";
+                navigator.clipboard.writeText(mpesaNumber).then(() => {
+                    const originalText = mpesaBtn.innerHTML;
+                    mpesaBtn.innerHTML = '<i class="fas fa-check"></i> Numéro copié !';
+                    setTimeout(() => {
+                        mpesaBtn.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
+            
+            // Animation au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

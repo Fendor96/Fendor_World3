@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logos | Axel Nodier - Designer Graphique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #0a192f;
+            --neon-blue: #00d1ff;
+            --dark-bg: #020c1b;
+            --text-light: #e6f1ff;
+            --accent-black: #0b0b15;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+
+        @font-face {
+            font-family: 'Cyber';
+            src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        #tel{
+            display: none;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .logo {
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(2, 12, 27, 0.9));
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./projets/log_odi_fond_blanc.png') center/contain no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+            animation: glitch 5s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon-blue); }
+            25% { text-shadow: -2px 0 #ff00ff; }
+            50% { text-shadow: 2px 0 #00ffcc; }
+            75% { text-shadow: -2px 0 #ff9900; }
+            100% { text-shadow: 2px 0 var(--neon-blue); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Logo Showcase */
+        .showcase-section {
+            padding: 6rem 10%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--neon-blue);
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-item {
+            background: rgba(10, 25, 47, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            transition: var(--transition);
+            height: 250px;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+            border-color: var(--neon-blue);
+            background: rgba(10, 25, 47, 0.5);
+        }
+
+        .logo-img {
+            max-width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(0, 209, 255, 0.3));
+            transition: var(--transition);
+        }
+
+        .logo-item:hover .logo-img {
+            filter: drop-shadow(0 0 15px var(--neon-blue));
+            transform: scale(1.1);
+        }
+
+        .logo-name {
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            text-align: center;
+        }
+
+        .logo-category {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Brand Guidelines */
+        .brand-section {
+            padding: 6rem 10%;
+            background: var(--accent-black);
+            border-top: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .brand-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .brand-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .brand-image {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+        }
+
+        .brand-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .brand-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            font-family: 'Cyber', sans-serif;
+        }
+
+        .brand-description {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .brand-features {
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            color: var(--neon-blue);
+        }
+
+        .brand-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .cta-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .cta-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .cta-mail {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+        }
+
+        .cta-mail:hover {
+            background: #00a8cc;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 209, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 10%;
+            background: var(--accent-black);
+            position: relative;
+            border-top: 1px solid rgba(0, 209, 255, 0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            color: var(--neon-blue);
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(230, 241, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .brand-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .logo-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width:768px) {
+            #tel{
+                display: block;
+                opacity: 1;
+            }
+
+            #tel header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+
+        }
+
+        #header-logo a {
+            font-family: 'Alta', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        #header-logo a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--deep-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        #header-logo a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+            .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: var(--transitionB);
+        }
+
+        .menu-btn.active .menu-line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-btn.active .menu-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .menu-line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Menu mobile */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: -50px;
+            align-items: center;
+            gap: 2rem;
+            clip-path: circle(0% at 90% 5%);
+            transition: clip-path 1s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            clip-path: circle(150% at 90% 5%);
+        }
+
+        .mobile-menu a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 1.4rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu a:hover{
+            border-bottom: var(--neon-blue);
+            padding-bottom: 10px;
+        }
+
+
+        #one{
+                display: none;
+        }
+
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="one">
+        <div class="logo">AXEL_NODIER</div>
+        <nav class="nav-links">
+            <a href="../index.html">Axel's Home</a>
+            <a href="./affiche.html">Affiches</a>
+            <a href="./logo.html">Logos</a>
+            <a href="./ux.html">UX/UI</a>
+        </nav>
+    </header>
+
+    
+    <section id="tel">
+        <header>
+            <div class="logo">AXEL_NODIER</div>
+                <div class="menu-btn" id="menuBtn">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </header>
+    
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Axel's Home</a>
+            <a href="#affiches">Affiches</a>
+            <a href="./logo.html">Logos</a>
+            <a href="./ux.html">UX/UI</a>
+
+        </nav>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">IDENTITÉS VISUELLES</h1>
+            <p class="hero-subtitle">Des logos uniques et mémorables qui captent l'essence de chaque marque et communiquent avec impact.</p>
+        </div>
+    </section>
+
+    <!-- Logo Showcase -->
+    <section class="showcase-section">
+        <h2 class="section-title">MES CRÉATIONS DE LOGOS</h2>
+        <div class="logo-grid">
+            <div class="logo-item">
+                <img src="../projets/log_odi_fond_blanc.png" alt="Logo ODI" class="logo-img">
+                <h4 class="logo-name">ODI</h4>
+                <p class="logo-category">Identité digitale</p>
+            </div>
+            <div class="logo-item">
+                <img src="../projets/Dakis_food_logo_white.png" alt="Logo Dakis Food" class="logo-img">
+                <h4 class="logo-name">Dakis Food</h4>
+                <p class="logo-category">Restauration</p>
+            </div>
+            <div class="logo-item">
+                <img src="../projets/MALHIYA HOLDINGS.png" alt="Logo Malhiya Holdings" class="logo-img">
+                <h4 class="logo-name">Malhiya Holdings</h4>
+                <p class="logo-category">Entreprise</p>
+            </div>
+            <div class="logo-item">
+                <img src="../projets/logo_haseye_2.png" alt="Logo Sample 4" class="logo-img">
+                <h4 class="logo-name">Nexus</h4>
+                <p class="logo-category">Technologie</p>
+            </div>
+            <div class="logo-item">
+                <img src="../projets/century in black.png" alt="Logo Sample 5" class="logo-img">
+                <h4 class="logo-name">Verve</h4>
+                <p class="logo-category">Mode</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="/projets/CM_logo.png" alt="Logo Sample 6" class="logo-img">
+                <h4 class="logo-name">CM Store</h4>
+                <p class="logo-category">Boutique en Ligne</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="/projets/Ezala_just_logo.png" alt="Logo Sample 6" class="logo-img">
+                <h4 class="logo-name">Ezala</h4>
+                <p class="logo-category">Appli web</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="/projets/KALAMU_DEBOUT_LOGO_PRESENTATION_ALL_WHITE.png" alt="Logo Sample 6" class="logo-img">
+                <h4 class="logo-name">Kalamu Déjà</h4>
+                <p class="logo-category">Mairie</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="/projets/tout.png" alt="Logo Sample 6" class="logo-img">
+                <h4 class="logo-name">Aurora</h4>
+                <p class="logo-category">Beauté</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="/projets/RENEW_2.png" alt="Logo Sample 6" class="logo-img">
+                <h4 class="logo-name">Cotrap Sarl</h4>
+                <p class="logo-category">Entrprise de construction</p>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="hero-title" style="font-size: 25px; margin: 10px auto ;text-align: center;">Allez soyez pas bêtes, on ne va pas tout voir ici</h2>
+        </div>
+    </section>
+
+    <!-- Brand Guidelines -->
+    <section class="brand-section">
+        <div class="brand-container">
+            <div class="brand-images">
+                <div class="brand-image">
+                    <img src="../projets/log_odi_fond_blanc.png" alt="Logo ODI fond blanc" loading="eager">
+                </div>
+                <div class="brand-image">
+                    <img src="../projets/log_odi_fond_noir.png" alt="Logo ODI fond noir" loading="eager">
+                </div>
+                <div class="brand-image">
+                    <img src="../projets/ODI_identite_visuelle.png" alt="Palette ODI" loading="eager">
+                </div>
+                <div class="brand-image">
+                    <img src="../projets/grilles_3.png" alt="Typographie ODI" loading="eager">
+                </div>
+            </div>
+            <div class="brand-info">
+                <h3>ODI - Charte Graphique</h3>
+                <p class="brand-description">
+                    Création complète de l'identité visuelle pour ODI, une entreprise innovante dans le domaine digital.
+                    Le logo combine modernité et stabilité, avec une forme géométrique évoquant à la fois un œil (vision)
+                    et une connexion digitale.
+                </p>
+                <div class="brand-features">
+                    <div class="feature-item">
+                        <i class="fas fa-palette feature-icon"></i>
+                        <span>Palette de couleurs optimisée pour le digital</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-font feature-icon"></i>
+                        <span>Typographie personnalisée et adaptable</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-expand-alt feature-icon"></i>
+                        <span>Variantes pour différents supports</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cube feature-icon"></i>
+                        <span>Système de design cohérent</span>
+                    </div>
+                </div>
+                <div class="brand-cta">
+                    <a href="https://wa.me/817220926" class="cta-button cta-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Discuter de mon logo
+                    </a>
+                    <a href="mailto:axnod50@gmail.com" class="cta-button cta-mail">
+                        <i class="fas fa-envelope"></i> Demander un devis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="../index.html">Accueil</a>
+            <a href="./affiche.html">Affiches</a>
+            <a href="#logos">Logos</a>
+            <a href="./ux.html">UX/UI</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Axel Nodier. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script src="../app/index.js"></script>
+    <script src="../app/header.js"></script>
+
+    <script>
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Effet de survol sur les logos
+        document.querySelectorAll('.logo-item').forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                item.style.setProperty('--x', `${x}px`);
+                item.style.setProperty('--y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>

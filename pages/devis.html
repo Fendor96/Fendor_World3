@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de Devis | Axel Nodier - Créations Graphiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #0a192f;
+            --neon-blue: #00d1ff;
+            --dark-bg: #020c1b;
+            --text-light: #e6f1ff;
+            --accent-black: #0b0b15;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+
+        @font-face {
+            font-family: 'Cyber';
+            src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .logo {
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(2, 12, 27, 0.9));
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./projets/femmes.png') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Devis Form */
+        .devis-section {
+            padding: 5rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: rgba(10, 25, 47, 0.5);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--neon-blue);
+            font-family: 'Cyber', sans-serif;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--neon-blue);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 209, 255, 0.1);
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            border-radius: 5px;
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .service-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-option input {
+            width: auto;
+        }
+
+        .submit-options {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            min-width: 250px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .email-btn {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+        }
+
+        .email-btn:hover {
+            background: #00a8cc;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 209, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 10%;
+            background: var(--accent-black);
+            position: relative;
+            border-top: 1px solid rgba(0, 209, 255, 0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            color: var(--neon-blue);
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(230, 241, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .submit-options {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+
+        @media only screen and (max-width:768px) {
+            #tel{
+                display: block;
+                opacity: 1;
+            }
+
+            #tel header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+
+        }
+
+        #header-logo a {
+            font-family: 'Alta', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        #header-logo a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--deep-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        #header-logo a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+            .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: var(--transitionB);
+        }
+
+        .menu-btn.active .menu-line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-btn.active .menu-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .menu-line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Menu mobile */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: -50px;
+            align-items: center;
+            gap: 2rem;
+            clip-path: circle(0% at 90% 5%);
+            transition: clip-path 1s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            clip-path: circle(150% at 90% 5%);
+        }
+
+        .mobile-menu a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 1.4rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu a:hover{
+            border-bottom: var(--neon-blue);
+            padding-bottom: 10px;
+        }
+
+
+        #one{
+                display: none;
+        }
+
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="one">
+        <div class="logo">AXEL_NODIER</div>
+        <nav class="nav-links">
+            <a href="../index.html">Accueil</a>
+            <a href="./affiche.html">Affiches</a>
+            <a href="./logo.html">Logos</a>
+            <a href="./ux.html">UX/UI</a>
+        </nav>
+    </header>
+
+    <section id="tel">
+        <header>
+            <div class="logo">AXEL_NODIER</div>
+                <div class="menu-btn" id="menuBtn">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </header>
+    
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="./index.html">Accueil</a>
+            <a href="#stats">Mes Stats</a>
+            <a href="#creations">Créations</a>
+            <a href="#contact">Contact</a>
+            <a href="./decouverte.html">Explorer +</a>
+        </nav>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">DEMANDE DE DEVIS</h1>
+            <p class="hero-subtitle">Décrivez votre projet et recevez une estimation personnalisée en moins de 24h</p>
+        </div>
+    </section>
+
+    <!-- Devis Form -->
+    <section class="devis-section">
+        <div class="form-container">
+            <h2 class="form-title">Formulaire de Devis</h2>
+            
+            <form id="devisForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nom Complet *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Entreprise/Organisation</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="project">Décrivez votre projet *</label>
+                        <textarea id="project" name="project" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Type de service *</label>
+                        <div class="service-options">
+                            <label class="service-option">
+                                <input type="checkbox" name="service" value="Affiche"> Affiche
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="service" value="Logo"> Logo
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="service" value="Identité visuelle"> Identité visuelle
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="service" value="UI/UX Design"> UI/UX Design
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="service" value="Site web"> Site web
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="service" value="Autre"> Autre
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Budget estimé</label>
+                        <select id="budget" name="budget">
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="Moins de 500€">Moins de 500€</option>
+                            <option value="500€ - 1000€">500€ - 1000€</option>
+                            <option value="1000€ - 2000€">1000€ - 2000€</option>
+                            <option value="2000€ - 5000€">2000€ - 5000€</option>
+                            <option value="Plus de 5000€">Plus de 5000€</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deadline">Délai souhaité</label>
+                        <select id="deadline" name="deadline">
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="Urgent (moins d'1 semaine)">Urgent (moins d'1 semaine)</option>
+                            <option value="1-2 semaines">1-2 semaines</option>
+                            <option value="2-4 semaines">2-4 semaines</option>
+                            <option value="1-2 mois">1-2 mois</option>
+                            <option value="Plus de 2 mois">Plus de 2 mois</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="files">Fichiers joints (brief, inspirations, etc.)</label>
+                        <input type="file" id="files" name="files" multiple>
+                    </div>
+                </div>
+                
+                <div class="submit-options">
+                    <button type="button" id="whatsappSubmit" class="submit-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+                    </button>
+                    <button type="button" id="emailSubmit" class="submit-btn email-btn">
+                        <i class="fas fa-envelope"></i> Envoyer par Email
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="./index.html">Accueil</a>
+            <a href="#affiches">Affiches</a>
+            <a href="#logos">Logos</a>
+            <a href="#uxui">UX/UI</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Axel Nodier. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script src="../app/index.js"></script>
+    <script src="../app/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('devisForm');
+            const whatsappBtn = document.getElementById('whatsappSubmit');
+            const emailBtn = document.getElementById('emailSubmit');
+            
+            // Fonction pour récupérer les données du formulaire
+            function getFormData() {
+                const formData = new FormData(form);
+                const data = {};
+                
+                // Récupérer les valeurs des champs
+                formData.forEach((value, key) => {
+                    // Gérer les cases à cocher multiples
+                    if (key === 'service') {
+                        if (!data[key]) data[key] = [];
+                        data[key].push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                });
+                
+                return data;
+            }
+            
+            // Formater les données pour WhatsApp
+            function formatWhatsAppMessage(data) {
+                let message = "Nouvelle demande de devis:\n\n";
+                message += `*Nom:* ${data.name || 'Non renseigné'}\n`;
+                message += `*Email:* ${data.email || 'Non renseigné'}\n`;
+                message += `*Téléphone:* ${data.phone || 'Non renseigné'}\n`;
+                message += `*Entreprise:* ${data.company || 'Non renseigné'}\n\n`;
+                message += `*Projet:* ${data.project || 'Non renseigné'}\n\n`;
+                
+                message += `*Services demandés:*\n`;
+                if (data.service && data.service.length > 0) {
+                    data.service.forEach(service => {
+                        message += `- ${service}\n`;
+                    });
+                } else {
+                    message += "Non renseigné\n";
+                }
+                
+                message += `\n*Budget estimé:* ${data.budget || 'Non renseigné'}\n`;
+                message += `*Délai souhaité:* ${data.deadline || 'Non renseigné'}\n`;
+                
+                return encodeURIComponent(message);
+            }
+            
+            // Envoyer par WhatsApp
+            whatsappBtn.addEventListener('click', function() {
+                const data = getFormData();
+                const phoneNumber = "817220926"; // Votre numéro WhatsApp
+                const message = formatWhatsAppMessage(data);
+                
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+            });
+            
+            // Envoyer par Email
+            emailBtn.addEventListener('click', function() {
+                const data = getFormData();
+                const email = "axnod50@gmail.com"; // Votre email
+                const subject = "Nouvelle demande de devis - " + (data.name || 'Client');
+                
+                let body = "Nouvelle demande de devis:\n\n";
+                body += `Nom: ${data.name || 'Non renseigné'}\n`;
+                body += `Email: ${data.email || 'Non renseigné'}\n`;
+                body += `Téléphone: ${data.phone || 'Non renseigné'}\n`;
+                body += `Entreprise: ${data.company || 'Non renseigné'}\n\n`;
+                body += `Description du projet:\n${data.project || 'Non renseigné'}\n\n`;
+                
+                body += `Services demandés:\n`;
+                if (data.service && data.service.length > 0) {
+                    data.service.forEach(service => {
+                        body += `- ${service}\n`;
+                    });
+                } else {
+                    body += "Non renseigné\n";
+                }
+                
+                body += `\nBudget estimé: ${data.budget || 'Non renseigné'}\n`;
+                body += `Délai souhaité: ${data.deadline || 'Non renseigné'}\n`;
+                
+                // Pour les fichiers, on ne peut pas les joindre via mailto:
+                // Il faudrait un backend pour gérer l'envoi des fichiers
+                
+                window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+            
+            // Animation au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

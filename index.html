@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axel Nodier | Designer & Développeur Web Futuriste</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #0a192f;
+            --neon-blue: #00d1ff;
+            --dark-bg: #020c1b;
+            --text-light: #e6f1ff;
+            --accent-black: #0b0b15;
+            --transitionB: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        @font-face {
+            font-family: 'Cyber';
+            src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Animation cosmos */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon-blue); }
+            25% { text-shadow: -2px 0 #ff00ff; }
+            50% { text-shadow: 2px 0 #00ffcc; }
+            75% { text-shadow: -2px 0 #ff9900; }
+            100% { text-shadow: 2px 0 var(--neon-blue); }
+        }
+
+        /* Effet de grille animée en fond */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(rgba(0, 209, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 209, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 100s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        /* Header cyber */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .logo {
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Hero améliorée */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media only screen and (max-width:768px){
+            .hero-content{
+                margin-top: 50px !important;
+            }
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+            animation: glitch 5s infinite;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-content p {
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 209, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-btn:hover {
+            background: rgba(0, 209, 255, 0.1);
+            box-shadow: 0 0 25px rgba(0, 209, 255, 0.5);
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 10%;
+            width: 35%;
+            max-width: 500px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 209, 255, 0.5));
+            z-index: 1;
+        }
+
+        /* Effet halo autour de l'avatar */
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(0, 209, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        /* Section Stats intégrée */
+        .stats-section {
+            padding: 8rem 10%;
+            background: rgba(2, 12, 27, 0.8);
+            position: relative;
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(0, 209, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.1);
+        }
+
+        .stats-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 5rem;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(0, 209, 255, 0.05);
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(0, 209, 255, 0.03), transparent);
+            z-index: -1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 209, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            font-family: 'Cyber', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: '+';
+            position: absolute;
+            right: -20px;
+            top: 10px;
+            font-size: 2rem;
+            color: var(--neon-blue);
+        }
+
+        .stat-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .stat-desc {
+            color: rgba(230, 241, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Section Créations Immersives */
+        .creations-section {
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creations-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 5rem;
+            font-family: 'Cyber', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+            padding: 0 10%;
+        }
+
+        .creations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .creation-card {
+            position: relative;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .creation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 209, 255, 0.3);
+            border-color: var(--neon-blue);
+        }
+
+        .creation-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .creation-card:hover .creation-image {
+            transform: scale(1.05);
+        }
+
+        .creation-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .creation-card:hover .creation-overlay {
+            transform: translateY(0);
+        }
+
+        .creation-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+        }
+
+        .creation-category {
+            color: var(--text-light);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Effet de particules sur les cartes */
+        .creation-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), 
+                      rgba(0, 209, 255, 0.1) 0%, transparent 30%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .creation-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Footer amélioré */
+        footer {
+            padding: 5rem 10%;
+            background: var(--accent-black);
+            position: relative;
+            border-top: 1px solid rgba(0, 209, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            font-family: 'Cyber', sans-serif;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .footer-links a::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-blue);
+            transform: translateX(10px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 209, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            color: var(--neon-blue);
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 209, 255, 0.1);
+            color: rgba(230, 241, 255, 0.6);
+        }
+
+        /* Effet de balayage sur le footer */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                rgba(0, 209, 255, 0.03) 50%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        footer:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            #hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 0 5%;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+
+            .hero-image {
+                position: relative;
+                right: auto;
+                width: 80%;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .stats-title, .creations-title {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+
+        #tel{
+            display: none;
+            opacity: 0;
+        }
+
+
+        @media only screen and (max-width:768px) {
+            #tel{
+                display: block;
+                opacity: 1;
+            }
+
+            #tel header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
+
+        }
+
+        #header-logo a {
+            font-family: 'Alta', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        #header-logo a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--deep-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        #header-logo a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+            .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: var(--transitionB);
+        }
+
+        .menu-btn.active .menu-line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-btn.active .menu-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .menu-line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Menu mobile */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: -50px;
+            align-items: center;
+            gap: 2rem;
+            clip-path: circle(0% at 90% 5%);
+            transition: clip-path 1s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            clip-path: circle(150% at 90% 5%);
+        }
+
+        .mobile-menu a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 1.4rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transitionB);
+        }
+
+        .mobile-menu a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu a:hover{
+            border-bottom: var(--neon-blue);
+            padding-bottom: 10px;
+        }
+
+
+        #one{
+                display: none;
+        }
+
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio d'ambiance -->
+    <audio id="ambianceSound" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Fond animé -->
+    <div class="grid-bg"></div>
+
+    <!-- Header -->
+    <header id="one">
+        <div class="logo">AXEL_NODIER</div>
+        <nav class="nav-links">
+            <a href="#stats">Mes Stats</a>
+            <a href="#creations">Créations</a>
+            <a href="#contact">Contact</a>
+            <a href="./decouverte.html">Explorer +</a>
+        </nav>
+    </header>
+
+
+    <section id="tel">
+        <header>
+            <div class="logo">AXEL_NODIER</div>
+                <div class="menu-btn" id="menuBtn">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </header>
+    
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="./index.html">Accueil</a>
+            <a href="./decouverte23.html">Explorer +</a>
+            <a href="#stats">Mes Stats</a>
+            <a href="./decouverte23.html">Créations</a>
+            <a href="./pages/devis.html">Contact</a>
+        </nav>
+    </section>
+
+    <!-- Section Hero -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>AXEL NODIER</h1>
+            <h2>DESIGNER & DÉVELOPPEUR WEB FUTURISTE</h2>
+            <p>Je crée des expériences digitales immersives qui repoussent les limites de l'imagination. Bienvenue dans mon univers où la technologie rencontre la créativité.</p>
+            <a href="./decouverte.html" class="cta-btn">Voir Mes Créations</a>
+        </div>
+        <img src="./styles/assets/Axel nodier_logo_blanc.png" alt="Avatar BlackAI avec lunettes et tresses" class="hero-image">
+    </section>
+
+    <!-- Section Stats -->
+    <section id="stats" class="stats-section">
+        <h2 class="stats-title">Mes Chiffres Clés</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="50">0</div>
+                <h3 class="stat-title">Projets</h3>
+                <p class="stat-desc">Réalisations uniques alliant design et performance</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="120">0</div>
+                <h3 class="stat-title">Clients</h3>
+                <p class="stat-desc">Entreprises et particuliers satisfaits</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="5">0</div>
+                <h3 class="stat-title">Années</h3>
+                <p class="stat-desc">D'expérience dans le design et développement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Créations -->
+    <section id="creations" class="creations-section">
+        <h2 class="creations-title">Un Aperçu de Mes Créations</h2>
+        <div class="creations-grid">
+            <!-- Projet 1 -->
+            <div class="creation-card">
+                <img src="./projets/Nicole_beauty_LOGO1.png" alt="Projet 1" class="creation-image">
+                <div class="creation-overlay">
+                    <h3 class="creation-title">Interface CyberUI</h3>
+                    <p class="creation-category">Design Futuriste</p>
+                </div>
+            </div>
+            
+            <!-- Projet 2 -->
+            <div class="creation-card">
+                <img src="./projets/COCKTAILS OASIS.png" alt="Projet 2" class="creation-image">
+                <div class="creation-overlay">
+                    <h3 class="creation-title">Nexus Platform</h3>
+                    <p class="creation-category">Développement Web</p>
+                </div>
+            </div>
+            
+            <!-- Projet 3 -->
+            <div class="creation-card">
+                <img src="./projets/tout.png" alt="Projet 3" class="creation-image">
+                <div class="creation-overlay">
+                    <h3 class="creation-title">AR Experience</h3>
+                    <p class="creation-category">Réalité Augmentée</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <div class="footer-links">
+                    <a href="#hero">Accueil</a>
+                    <a href="#stats">Mes Stats</a>
+                    <a href="#creations">Créations</a>
+                    <a href="./discover.html">Explorer +</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <div class="footer-links">
+                    <a href="mailto:axnod50@gmail.com">axel@nodier.com</a>
+                    <a href="tel:+243817220926">+243 817220926</a>
+                    <a href="./pages/devis.html">Demande de devis</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Réseaux</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="https://www.github.com/fendor96"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.fr/fendor_2807"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/817220926"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Axel Nodier. Tous droits réservés.
+        </div>
+    </footer>
+
+
+    <script src="./app/index.js"></script>
+    <script src="./app/header.js"></script>
+    <script>
+        // Animation des stats
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Effet de souris sur les cartes créations
+        document.querySelectorAll('.creation-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // Détection de l'interaction pour lancer le son
+        document.addEventListener('click', function initAudio() {
+            const audio = document.getElementById('ambianceSound');
+            audio.volume = 0.3;
+            audio.play();
+            document.removeEventListener('click', initAudio);
+        });
+
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'stats') {
+                        animateStats();
+                    }
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Effet de glitch aléatoire sur le titre
+        setInterval(() => {
+            const h1 = document.querySelector('h1');
+            h1.style.animation = 'none';
+            void h1.offsetWidth; // Trigger reflow
+            h1.style.animation = 'glitch 0.5s';
+        }, 5000);
+    </script>
+</body>
+</html>
