@@ -764,6 +764,16 @@
 
 
         }
+
+        .activeM{
+            border-bottom: 2px solid var(--neon-blue);
+            animation: glitch 5s infinite ;
+        }
+
+        .activeN{
+            border-bottom: 2px solid var(--neon-blue);
+
+        }
     </style>
 </head>
 <body>
@@ -772,6 +782,7 @@
         <div class="logo">AXEL_NODIER</div>
         <nav class="nav-links">
             <a href="./index.html">Accueil</a>
+            <a href="./decouverte.html" class="activeM">Explorer +</a>
             <a href="./pages/affiche.html">Affiches</a>
             <a href="./pages/logo.html">Logos</a>
             <a href="./pages/ux.html">UX/UI</a>
@@ -790,11 +801,11 @@
         </header>
     
         <nav class="mobile-menu" id="mobileMenu">
-            <a href="./index.html">Accueil</a>
-            <a href="#stats">Mes Stats</a>
-            <a href="#creations">Créations</a>
-            <a href="#contact">Contact</a>
-            <a href="./decouverte.html">Explorer +</a>
+            <a href="index.html">Accueil</a>
+            <a href="./decouverte.html" class="activeN">Explorer +</a>
+            <a href="./pages/affiche.html">Affiche</a>
+            <a href="./pages/logo.html">Logos</a>
+            <a href="./pages/ux.html">UX/UI</a>
         </nav>
     </section>
 
@@ -942,10 +953,11 @@
     <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="./index.html">Accueil</a>
-            <a href="#affiches">Affiches</a>
-            <a href="#logos">Logos</a>
-            <a href="#uxui">UX/UI</a>
+            <a href="./index.html">Axel's home</a>
+            <a href="./decouverte.html" class="activeM">Explorer +</a>
+            <a href="./pages/affiche.html">Affiches</a>
+            <a href="./pages/logo.html">Logos</a>
+            <a href="./pages/ux.html">UX/UI</a>
         </div>
         <div class="social-links">
             <a href="#"><i class="fab fa-dribbble"></i></a>
@@ -957,6 +969,7 @@
             &copy; 2025 Axel Nodier. Tous droits réservés.
         </div>
     </footer>
+    <script src="./app/index.js"></script>
     <script src="./app/header.js"></script>
     <script>
         // Carrousel 360°
